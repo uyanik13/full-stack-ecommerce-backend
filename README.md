@@ -1,66 +1,139 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel 10 Ecommerce Panel with VUE JS 3
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## Project Overview
+This is an ecommerce management system built with Laravel and Vue using vite. It provides functionality to create and manage products, product categories, product images, shippings, discounts, and users. It also includes a dashboard for visualizing data using charts and cards.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![desktop](/public/demo/laravel-vue.jpeg)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Project Setup
+To set up the project, follow these steps:
 
-## Learning Laravel
+Clone the repository.
+```
+git clone https://github.com/uyanik13/full-stack-ecommerce-backend.git
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Run composer install and npm install.
+### Create a .env file and set up your database connection.
+```
+composer install
+cp .env.example .env
+php artisan key:generate
+npm install
+php artisan migrate
+php artisan db:seed
+npm run dev
+php artisan serve 
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Project Structure
+### The project structure is as follows:
 
-## Laravel Sponsors
+`app/Http/Controllers`: Contains the Laravel controllers.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+`app/Models`: Contains the Laravel models.
 
-### Premium Partners
+`app/Repositories`: Contains the Laravel repositories.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+`app/Services`:Contains the Laravel services.
 
-## Contributing
+`database/factories`:Contains the Laravel factory classes.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+`database/seeders`:Contains the Laravel seeder classes.
 
-## Code of Conduct
+`routes/api.php`:Contains the Laravel API routes.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+## Functionality
+### The project provides the following functionality:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Create and manage products, product categories, product images, shippings, discounts, and users.
+Dashboard for visualizing data using charts and cards.
 
-## License
+## Technologies Used
+### The project uses the following technologies:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+> Laravel 8
+
+> Vue 3 with vite
+
+> Axios
+
+> Pinia
+
+> Tailwind CSS
+
+> Laravel Sanctum
+
+## Database Diagram
+The database diagram for the project is as follows:
+![desktop](/public/demo/database-diagram.jpeg)
+
+## Authentication
+The project uses Laravel Sanctum for authentication.
+ To log in or register, send a POST request to the `/api/auth/login` or `/api/auth/register` endpoint with the `email` and `password` fields in the request body. 
+ The API will return an access token that you can use to authenticate future requests. To log out, send a POST request to the `/api/auth/logout` endpoint with the access token in the Authorization header.
+
+ ## Global Helper
+ The project includes a global helper function that you can use to generate image URLs. To use it, call the `getImageUrl` function with the image path and size as arguments. For example:
+ ```
+ $imageData = uploadImage($request->image, 'image_path');
+ $imageData =  [
+            'image_url',
+            'image_type' 
+        ];
+```
+
+## Factories and Seeders
+The project includes Laravel factories and seeders that you can use to generate fake data. To use them, run the `php artisan db:seed` command.
+
+## Custom Laravel Request and Validation Rule
+The project includes a custom Laravel request class and validation rule for validating product variants. The `ProductVariantRequest` class extends the `FormRequest` class and defines the rules for validating product variants. 
+
+To use them, call the `ProductVariantRequest` class in the controller method that handles the variant creation or update request. For example:
+
+## Product Relations with Eloquent
+The project uses Eloquent to define and manage product relations. To define a relation, add a method to the model that returns the relation. For example:
+```
+public function category()
+{
+    return $this->belongsTo(ProductCategory::class);
+}
+
+```
+
+## To retrieve a relation, call the method on the model. For example:
+
+```
+$category = $product->category;
+```
+
+## Image Upload with Vue
+The project includes functionality to upload multiple images for a product using Vue. To upload an image, select it using the file input and it will be uploaded automatically. To delete an image, click the delete button next to it.
+
+## Guarding Routes
+The project includes functionality to guard routes from guests or authenticated users using Laravel middleware. To guard a route, add the middleware to the route definition. For example:
+```
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware('auth:sanctum');
+```
+
+## Pagination
+The project includes a global Vue component for `pagination`. To use it, add the Pagination component to your Vue file and pass the `items` and `perPage` props.
+
+## Unit Testing
+The project includes unit tests for the Laravel API using PHPUnit. To run the tests, run the php artisan test command.
+
+## Deployment
+Set up your server environment with PHP and MySQL.
+Clone the repository onto the server.
+Set up your server environment variables in the .env file.
+Run `composer install` and `npm install` to install the project dependencies.
+Run `php artisan migrate` to create the database tables.
+Run `php artisan db:seed` to seed the database with fake data.
+Run `npm run production` to compile the Vue files for production.
+Set up a web server configuration to serve the project.
+Point your domain or IP address to the server to access the project.
